@@ -1169,6 +1169,9 @@ public abstract class AbstractCSharpCodegen extends DefaultCodegen implements Co
         String nestedType = getTypeDeclaration(items);
         // TODO: We may want to differentiate here between generics and primitive arrays.
         instantiationType.append("<").append(nestedType).append(">");
+        if(this.nullReferenceTypesFlag && ModelUtils.isNullable(arr)) {
+            instantiationType.append("?");
+        }
         return instantiationType.toString();
     }
 
